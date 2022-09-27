@@ -1,4 +1,4 @@
-# Gulp with TailwindCSS Starter Kit
+# Gulp with TailwindCSS Nunjucks Starter Kit
 
 Gulp with TailwindCSS Starter Kit ( Updated with [TailwindCSS JIT](https://github.com/tailwindlabs/tailwindcss-jit) )- A repo which makes your development easier with predefined gulp tasks that help you to use [tailwindcss](https://github.com/tailwindcss/tailwindcss) with simple npm commands 
 
@@ -32,7 +32,7 @@ To change the path of files and destination/build folder, edit options in **conf
 {
   config: {
       ...
-      port: 9050 // browser preview port
+      port: 8799 // browser preview port
   },
   paths: {
      root: "./",
