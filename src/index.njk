@@ -1,0 +1,10 @@
+{% extends './templates/basic/_base-template.njk' %}
+{% import './templates/components/macros-typography.njk' as macrosTypography %}
+{% import './templates/components/macros-buttons.njk' as macrosButton %}
+
+{% block content %}
+  <section class="flex flex-col items-center justify-center gap-14 bg-black h-screen w-full">
+    <h1 class="text-8xl text-center text-white" split-direction="bottom" split-trigger="load">Hello world!</h1>
+    <p class="text-3xl text-white text-opacity-70" fade fade-trigger="load">So let's create</p>
+  </section>
+{% endblock %}
