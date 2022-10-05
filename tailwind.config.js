@@ -3,20 +3,43 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: ['./src/**/*.njk', './src/**/*.js'],
   theme: {
-    extend: {},
+    extend: {
+
+    },
+
     container: {
       center: true,
+      screens: {
+        '3xl': '1920px',
+      },
       padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
+        DEFAULT: '2rem',
+        sm: '',
       }
     },
 
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      black: '#000',
-      white: '#fff',
+      // Font colors
+      dark: '#1D1D1F',
+      light: '#F7F7F7',
+
+      // Background colors
+      black: '#181818',
+      lightest: '#F9F9F9',
+      white: '#FFFEFE',
+
+      // Brand colors
+      sunset: '#B87829',
+      brick: '#B26D5D',
+      creme: '#F2EAE2',
+    },
+
+    fontFamily: {
+      vollkorn: ['vollkorn', 'serif'],
+      proxima: ['proxima-nova', 'sans-serif'],
+      playfair: ['Playfair Display', 'serif'],
     },
 
     transitionTimingFunction: {
@@ -32,6 +55,8 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1366px',
       '3xl': '1536px',
+      '4xl': '1680px',
+      '5xl': '1800px',
     },
   },
 

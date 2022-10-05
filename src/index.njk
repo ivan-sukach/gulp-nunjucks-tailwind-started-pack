@@ -1,10 +1,48 @@
 {% extends './templates/basic/_base-template.njk' %}
 {% import './templates/components/macros-typography.njk' as macrosTypography %}
-{% import './templates/components/macros-buttons.njk' as macrosButton %}
+{% import './templates/components/macros-buttons.njk' as macrosButtons %}
 
+{% set title = 'Al Moudira' %}
 {% block content %}
-  <section class="flex flex-col items-center justify-center gap-14 bg-black h-screen w-full">
-    <h1 class="text-8xl text-center text-white" split-direction="bottom" split-trigger="load">Hello world!</h1>
-    <p class="text-3xl text-white text-opacity-70" fade fade-trigger="load">So let's create</p>
+  <section class="home-hero-section full-height-section relative bg-dark text-light overflow-hidden">
+    <div class="home-hero-slider-wrapp absolute inset-0">
+      <div class="home-hero-slider w-full h-full" data-images='["./img/home/hero-1.webp","./img/home/hero-2.webp", "./img/menu.webp"]'></div>
+      <div class="absolute inset-0 z-10 bg-black/40"></div>
+    </div>
+
+    <div class="container relative h-full flex flex-col items-center justify-center text-center z-10">
+      <h1 class="h1" split-direction="bottom" split-trigger="load">Al Moudira Hotel</h1>
+      <p class="block max-w-lg mt-4" fade fade-trigger="load">The only palace on the west bank of the Nile</p>
+
+      <div fade fade-trigger="load">
+        <svg class="w-8 h-3 my-8" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3.51471" y="3.87868" width="3" height="3" transform="rotate(45 3.51471 3.87868)" fill="#B26D5D" stroke="#B26D5D"/>
+          <rect x="16" y="1.05025" width="7" height="7" transform="rotate(45 16 1.05025)" stroke="#B26D5D"/>
+          <rect x="28.4853" y="3.87868" width="3" height="3" transform="rotate(45 28.4853 3.87868)" fill="#B26D5D" stroke="#B26D5D"/>
+        </svg>
+      </div>
+
+      <div fade fade-trigger="load">
+        {{macrosButtons.button({
+        'text': 'Explore More',
+        'href': '#',
+        'class': ''
+      })}}
+      </div>
+
+    </div>
+
+    {# Next Slide Button #}
+    <div class="absolute right-0 bottom-4 xs:bottom-6 sm:bottom-20 xl:bottom-1/2 xl:translate-y-1/2 z-20">
+      <button class="home-hero-next-button flex items-center translate-x-40 outline-none group" aria-label="Next slide">
+        <svg class="w-[130px] h-4 mr-8 group-hover:translate-x-5 group-active:translate-x-16 duration-500 z-10">
+          <use xlink:href="#long-right-arrow"></use>
+        </svg>
+        <span class="block w-56 h-36 group-hover:scale-110 sm:group-hover:scale-125 group-hover:-translate-x-14 duration-500">
+          <img class="home-hero-slider-next-img img-cover" src="./img/home/hero-2.webp" alt="Next slide">
+        </span>
+      </button>
+
+    </div>
   </section>
 {% endblock %}
