@@ -3,48 +3,55 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: ['./src/**/*.njk', './src/**/*.js'],
   theme: {
-    extend: {
+    container: false,
 
+    maxWidth: {
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      'full': '100%',
+      'xs': '20rem',
+      'sm': '24rem',
+      'md': '28rem',
+      'lg': '32rem',
+      'xl': '36rem',
+      '2xl': '42rem',
+      '3xl': '48rem',
+      '4xl': '56rem',
+      '5xl': '64rem',
+      '6xl': '72rem',
+      '7xl': '80rem'
     },
 
-    container: {
-      center: true,
-      screens: {
-        '3xl': '1920px',
+    extend: {
+      spacing: {
+        '1/12': '8.333333%',
+        '2/12': '16.666667%',
+        '3/12': '25%',
+        '4/12': '33.333333%',
       },
-      padding: {
-        DEFAULT: '2rem',
-        sm: '',
-      }
     },
 
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      // Font colors
-      dark: '#1D1D1F',
-      light: '#F7F7F7',
-
-      // Background colors
-      black: '#181818',
-      lightest: '#F9F9F9',
-      white: '#FFFEFE',
-
-      // Brand colors
-      sunset: '#B87829',
-      brick: '#B26D5D',
-      creme: '#F2EAE2',
     },
 
     fontFamily: {
-      vollkorn: ['vollkorn', 'serif'],
-      proxima: ['proxima-nova', 'sans-serif'],
-      playfair: ['Playfair Display', 'serif'],
+      // vollkorn: ['vollkorn', 'serif'],
     },
 
     transitionTimingFunction: {
       'basic-ease': 'cubic-bezier(0.33, 0, 0.13, 1)',
       'secondary-ease': 'cubic-bezier(0.33, 0, 0.67, 1)',
+      'linear': 'linear',
     },
 
     screens: {
@@ -67,7 +74,8 @@ module.exports = {
       addVariant('supports-grid', '@supports (display: grid)')
     }),
     plugin(({ addVariant }) => {
-      addVariant('supports-hover', '@media (hover: hover)')
+      addVariant('device-hover', '@media (pointer: fine) and (hover: hover)')
+      addVariant('device-touch', '@media (pointer: coarse) and (hover: none)')
     }),
   ],
 }

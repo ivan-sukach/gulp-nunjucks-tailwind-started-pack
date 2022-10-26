@@ -66,7 +66,7 @@ function devNunjucks() {
 
 function devStyles() {
   const tailwindcss = require('tailwindcss');
-  return src(`${options.paths.src.css}/**/*.scss`).pipe(sass().on('error', sass.logError))
+  return src(`${options.paths.src.css}/main.scss`).pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       tailwindcss(options.config.tailwindjs),
       require('autoprefixer'),
@@ -113,12 +113,22 @@ function devImages() {
   return src(`${options.paths.src.img}/**/*`).pipe(dest(options.paths.dist.img));
 }
 
+function devVideos() {
+  return src(`${options.paths.src.video}/**/*`).pipe(dest(options.paths.dist.video));
+}
+
+function devFonts() {
+  return src(`${options.paths.src.fonts}/**/*`).pipe(dest(options.paths.dist.fonts));
+}
+
 function watchFiles() {
   // watch(`${options.paths.src.base}/**/*.html`, series(devHTML, devStyles, previewReload));
   watch(`${options.paths.src.base}/**/*.njk`, series(devNunjucks, devStyles, previewReload));
   watch([options.config.tailwindjs, `${options.paths.src.css}/**/*.scss`], series(devStyles, previewReload));
   watch(`${options.paths.src.js}/**/*.js`, series(devScripts, previewReload));
   watch(`${options.paths.src.img}/**/*`, series(devImages, previewReload));
+  watch(`${options.paths.src.video}/**/*`, series(devVideos, previewReload));
+  watch(`${options.paths.src.fonts}/**/*`, series(devFonts, previewReload));
   console.log("\n\t" + logSymbols.info, "Watching for Changes..\n");
 }
 
@@ -187,6 +197,14 @@ function prodImages() {
   return src(options.paths.src.img + '/**/*').pipe(imagemin()).pipe(dest(options.paths.build.img));
 }
 
+function prodVideos() {
+  return src(`${options.paths.src.video}/**/*`).pipe(dest(options.paths.build.video));
+}
+
+function prodFonts() {
+  return src(`${options.paths.src.fonts}/**/*`).pipe(dest(options.paths.build.fonts));
+}
+
 function prodClean() {
   console.log("\n\t" + logSymbols.info, "Cleaning build folder for fresh start.\n");
   return del([options.paths.build.base]);
@@ -199,13 +217,13 @@ function buildFinish(done) {
 
 exports.default = series(
   devClean, // Clean Dist Folder
-  parallel(devStyles, devScripts, devImages, devNunjucks), //Run All tasks in parallel
+  parallel(devStyles, devScripts, devImages, devVideos, devFonts, devNunjucks), //Run All tasks in parallel
   livePreview, // Live Preview Build
   watchFiles // Watch for Live Changes
 );
 
 exports.prod = series(
   prodClean, // Clean Build Folder
-  parallel(prodStyles, prodScripts, prodImages, prodNunjucks), //Run All tasks in parallel
+  parallel(prodStyles, prodScripts, prodImages, prodVideos, prodFonts, prodNunjucks), //Run All tasks in parallel
   buildFinish
 );

@@ -11,9 +11,6 @@ import {
   staggerChildren,
 } from './basic/help-functions'
 
-import initMenuAnimation from './basic/menu';
-import initHomeHeroAnimation from './sections/home-hero';
-
 window.addEventListener('pageshow', function (event) {
   if (event.persisted) {
     window.location.reload()
@@ -23,8 +20,6 @@ window.addEventListener('pageshow', function (event) {
 document.addEventListener('DOMContentLoaded', () => {
   // Split text lines
   initSplitText('[split-direction]');
-
-  initMenuAnimation();
 
   // Smooth Scroll
   window.smoother = ScrollSmoother.create({
@@ -44,6 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //  if (isThereСlass('[zoom-out-trigger="scroll"]')) gsap.effects.zoomOut('[zoom-out-trigger="scroll"]')
 
   if (isSafari()) document.querySelector('html').classList.add('safari')
-  if (isThereСlass('.home-hero-section')) initHomeHeroAnimation();
+  // if (isThereСlass('.home-hero-section')) initHomeHeroAnimation();
 
 })

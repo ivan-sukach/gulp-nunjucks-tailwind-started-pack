@@ -9,19 +9,25 @@ module.exports = {
       base: "./src",
       css: "./src/css",
       js: "./src/js",
-      img: "./src/img"
+      img: "./src/img",
+      video: "./src/video",
+      fonts: "./src/fonts",
     },
     dist: {
       base: "./dist",
       css: "./dist/css",
       js: "./dist/js",
-      img: "./dist/img"
+      img: "./dist/img",
+      video: "./dist/video",
+      fonts: "./dist/fonts",
     },
     build: {
       base: "./build",
       css: "./build/css",
       js: "./build/js",
-      img: "./build/img"
+      img: "./build/img",
+      video: "./build/video",
+      fonts: "./build/fonts",
     }
   }
 }
