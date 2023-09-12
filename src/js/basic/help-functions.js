@@ -5,8 +5,6 @@ import CustomEase from 'gsap/CustomEase'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase)
 
-CustomEase.create('customEase', 'M0, 0 C0.33, 0 0.13, 1 1, 1')
-CustomEase.create('subEase', 'M0, 0 C0.33, 0 0.67, 1 1, 1')
 const basicDuration = 1
 
 export function isThereСlass(element) {
@@ -69,13 +67,13 @@ export function batchOnScroll(wrappers) {
   document.querySelectorAll(wrappers).forEach(wrapper => {
     ScrollTrigger.batch(wrapper.querySelectorAll('[fade-trigger="batch"]'), {
       start: 'top bottom-=10%',
-      end: 'top bottom-=10%',
+      end: 'bottom bottom-=10%',
       once: true,
       onEnter: batch => {
         gsap.to(batch, {
           y: 0,
           opacity: 1,
-          ease: 'basicEase',
+          ease: 'power2.inOut',
           duration: 1,
           stagger: 0.15,
         })
@@ -90,14 +88,14 @@ export function staggerChildren(wrappers) {
     gsap.to(wrapper.querySelectorAll('[fade]'), {
       y: 0,
       opacity: 1,
-      ease: 'basicEase',
+      ease: 'power2.inOut',
       duration: 1,
       stagger: delay ? +delay : 0.15,
 
       scrollTrigger: {
         trigger: wrapper,
         start: 'top bottom-=10%',
-        end: 'top bottom-=10%',
+        end: 'bottom bottom-=10%',
         once: true,
       },
     })
@@ -105,14 +103,14 @@ export function staggerChildren(wrappers) {
 
     ScrollTrigger.batch(wrapper.querySelectorAll('[fade-trigger="batch"]'), {
       start: 'top bottom-=10%',
-      end: 'top bottom-=10%',
+      end: 'bottom bottom-=10%',
       once: true,
       markers: true,
       onEnter: batch => {
         gsap.to(batch, {
           y: 0,
           opacity: 1,
-          ease: 'basicEase',
+          ease: 'power2.inOut',
           duration: 1,
           stagger: 0.15,
         })
@@ -143,7 +141,7 @@ gsap.registerEffect({
         scrollTrigger: {
           trigger: target,
           start: `top bottom-=${config.offset}%`,
-          end: `top bottom-=${config.offset}%`,
+          end: `bottom bottom-=${config.offset}%`,
           scrub: false,
           once: config.once,
           markers: config.markers,
@@ -156,7 +154,7 @@ gsap.registerEffect({
     y: 0,
     stagger: 0.3,
     duration: basicDuration,
-    ease: 'basicEase',
+    ease: 'power2.inOut',
     once: true,
     offset: 10,
     markers: false,
@@ -188,7 +186,7 @@ gsap.registerEffect({
         scrollTrigger: {
           trigger: target,
           start: `top bottom-=${config.offset}%`,
-          end: `top bottom-=${config.offset}%`,
+          end: `bottom bottom-=${config.offset}%`,
           once: config.once,
           markers: config.markers,
         },
@@ -200,7 +198,7 @@ gsap.registerEffect({
     y: 0,
     stagger: 0.3,
     duration: 1,
-    ease: 'basicEase',
+    ease: 'power2.inOut',
     once: true,
     offset: 10,
     markers: false,
@@ -232,7 +230,7 @@ gsap.registerEffect({
         scrollTrigger: {
           trigger: target,
           start: `top bottom-=${config.offset}%`,
-          end: `top bottom-=${config.offset}%`,
+          end: `bottom bottom-=${config.offset}%`,
           once: config.once,
           markers: config.markers,
         },
@@ -244,7 +242,7 @@ gsap.registerEffect({
     y: 0,
     stagger: 0.3,
     duration: 1.5,
-    ease: 'basicEase',
+    ease: 'power2.inOut',
     once: true,
     offset: 25,
     markers: false,
