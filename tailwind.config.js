@@ -63,9 +63,14 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      black: '#000000',
+      white: '#FFFFFF',
+      dark: '#000942',
+      light: 'rgba(249, 248, 246, 1)'
     },
 
     fontFamily: {
+      mont: ['mont', 'sans-serif'],
     },
 
     transitionTimingFunction: {

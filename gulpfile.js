@@ -11,17 +11,15 @@ const options = require("./config"); //paths and other options from config.js
 const browserSync = require('browser-sync').create();
 
 const nunjucks = require('gulp-nunjucks');
+const htmlmin = require('gulp-htmlmin');
 const rename = require('gulp-rename');
 const prettier = require('gulp-prettier');
 const sass = require('gulp-sass')(require('sass')); //For Compiling SASS files
 const postcss = require('gulp-postcss'); //For Compiling tailwind utilities with tailwind config
 const concat = require('gulp-concat'); //For Concatinating js,css files
-const uglify = require('gulp-terser');//To Minify JS files
-const imagemin = require('gulp-imagemin'); //To Optimize Images
 const cleanCSS = require('gulp-clean-css');//To Minify CSS files
-const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
+// const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
 const autoprefixer = require('gulp-autoprefixer');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const plumber = require('gulp-plumber')
 const webpack = require('webpack-stream')
@@ -138,28 +136,32 @@ function devClean() {
 function prodNunjucks() {
   return src(`${options.paths.src.base}/*.njk`)
     .pipe(nunjucks.compile())
+    .pipe(prettier({
+      singleQuote: false,
+      htmlWhitespaceSensitivity: 'ignore',
+      printWidth: 130
+    }))
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(
       rename(function (path) {
         return (path.extname = '.html');
       })
     )
-    .pipe(dest(options.paths.build.base))
+    .pipe(dest(options.paths.build.base));
 }
 
+
 function prodStyles() {
-  return src(`${options.paths.dist.css}/**/*`)
+  const tailwindcss = require('tailwindcss');
 
-    // this removes necessary CSS and creates bugs
-    // .pipe(purgecss({
-    //   content: ['src/**/*.{njk,js}'],
-    //   defaultExtractor: content => {
-    //     const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []
-    //     const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || []
-    //     return broadMatches.concat(innerMatches)
-    //   }
-    // }))
-
-    .pipe(cleanCSS({ compatibility: '*' }))
+  return src(`${options.paths.src.css}/main.scss`)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([
+      tailwindcss(options.config.tailwindjs),
+      require('autoprefixer')
+    ]))
+    .pipe(concat('style.css'))
+    .pipe(cleanCSS({ level: 0 }))
     .pipe(dest(options.paths.build.css));
 }
 
@@ -171,14 +173,14 @@ function prodScripts() {
       mode: 'production',
       plugins: [
         ...webpackConfig.plugins,
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
       ]
     }))
     .pipe(dest(options.paths.build.js))
 }
 
 function prodImages() {
-  return src(options.paths.src.img + '/**/*').pipe(imagemin()).pipe(dest(options.paths.build.img));
+  return src(`${options.paths.src.img}/**/*`).pipe(dest(options.paths.build.img));
 }
 
 function prodVideos() {
@@ -201,6 +203,8 @@ function prodClean() {
 function buildFinish(done) {
   console.log("\n\t" + logSymbols.info, `Production build is complete. Files are located at ${options.paths.build.base}\n`);
   done();
+  // Finish Message and stop gulp
+  process.exit();
 }
 
 exports.default = series(

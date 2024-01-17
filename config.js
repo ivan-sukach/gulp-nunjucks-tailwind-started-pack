@@ -12,6 +12,7 @@ module.exports = {
       img: "./src/img",
       video: "./src/video",
       fonts: "./src/fonts",
+      models: "./src/models",
       json: "./src/json",
     },
     dist: {
@@ -21,6 +22,7 @@ module.exports = {
       img: "./dist/img",
       video: "./dist/video",
       fonts: "./dist/fonts",
+      models: "./dist/models",
       json: "./dist/json",
     },
     build: {
@@ -30,6 +32,7 @@ module.exports = {
       img: "./build/img",
       video: "./build/video",
       fonts: "./build/fonts",
+      models: "./build/models",
       json: "./build/json",
     }
   }
