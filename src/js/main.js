@@ -4,7 +4,7 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother'
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 import {
-  isThereСlass,
+  isThereClass,
   initSplitText,
   isSafari,
   batchOnScroll,
@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.effects.split('[split-trigger="scroll"]')
   gsap.effects.split('[split-trigger="load"]')
   gsap.effects.fade('[fade-trigger="load"]')
-  //  if (isThereСlass('[stagger-children]')) staggerChildren('[stagger-children]')
-  //  if (isThereСlass('[zoom-out-trigger="scroll"]')) gsap.effects.zoomOut('[zoom-out-trigger="scroll"]')
+  //  if (isThereClass('[stagger-children]')) staggerChildren('[stagger-children]')
+  //  if (isThereClass('[zoom-out-trigger="scroll"]')) gsap.effects.zoomOut('[zoom-out-trigger="scroll"]')
 
   if (isSafari()) document.querySelector('html').classList.add('safari')
-  // if (isThereСlass('.home-hero-section')) initHomeHeroAnimation();
+  // if (isThereClass('.home-hero-section')) initHomeHeroAnimation();
 
 })
