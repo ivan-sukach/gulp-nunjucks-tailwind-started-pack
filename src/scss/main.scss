@@ -1,5 +1,6 @@
 @import "./a.tailwind.scss";
 
-@import "./basic/typography.scss";
 @import "./basic/custom-reset.scss";
+@import "./components/typography.scss";
+@import "./components/components.scss";
 @import "./basic/animations.scss";

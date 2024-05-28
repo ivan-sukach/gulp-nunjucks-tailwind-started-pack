@@ -70,7 +70,7 @@ function devNunjucks() {
 
 function devStyles() {
   const tailwindcss = require('tailwindcss');
-  return src(`${options.paths.src.css}/main.scss`).pipe(sass().on('error', sass.logError))
+  return src(`${options.paths.src.scss}/main.scss`).pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       tailwindcss(options.config.tailwindjs),
       require('autoprefixer'),
@@ -116,7 +116,7 @@ function devJson() {
 function watchFiles() {
   // watch(`${options.paths.src.base}/**/*.html`, series(devHTML, devStyles, previewReload));
   watch(`${options.paths.src.base}/**/*.njk`, series(devNunjucks, devStyles, previewReload));
-  watch([options.config.tailwindjs, `${options.paths.src.css}/**/*.scss`], series(devStyles, previewReload));
+  watch([options.config.tailwindjs, `${options.paths.src.scss}/**/*.scss`], series(devStyles, previewReload));
   watch(`${options.paths.src.js}/**/*.js`, series(devScripts, previewReload));
   watch(`${options.paths.src.js}/**/*.vue`, series(devScripts, devStyles, previewReload));
   watch(`${options.paths.src.img}/**/*`, series(devImages, previewReload));
@@ -154,7 +154,7 @@ function prodNunjucks() {
 function prodStyles() {
   const tailwindcss = require('tailwindcss');
 
-  return src(`${options.paths.src.css}/main.scss`)
+  return src(`${options.paths.src.scss}/main.scss`)
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       tailwindcss(options.config.tailwindjs),

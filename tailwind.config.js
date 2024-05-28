@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ['./src/**/*.njk', './src/**/*.js', './src/**/*.vue'],
+  content: ['./src/**/*.njk', './src/**/*.js', './src/**/*.vue', './src/scss/**/*.scss'],
   theme: {
     container: false,
 
@@ -38,26 +38,24 @@ module.exports = {
         '4/12': '33.333333%',
       },
 
-      typography: (theme) => ({
-
-
-        DEFAULT: {
-          css: {
-            // color: theme('colors.white'),
-            // opacity: 0.5,
-            h2: {
-              'font-family': theme('fontFamily.lowan') + '!important',
-              'font-size': theme('fontSize.2xl'),
-              'text-transform': 'uppercase',
-            },
-            img: {
-              'max-width': '70%',
-              'margin-left': 'auto',
-              'margin-right': 'auto',
-            }
-          },
-        },
-      }),
+      // typography: (theme) => ({
+      //   DEFAULT: {
+      //     css: {
+      //       // color: theme('colors.white'),
+      //       // opacity: 0.5,
+      //       h2: {
+      //         'font-family': theme('fontFamily.lowan') + '!important',
+      //         'font-size': theme('fontSize.2xl'),
+      //         'text-transform': 'uppercase',
+      //       },
+      //       img: {
+      //         'max-width': '70%',
+      //         'margin-left': 'auto',
+      //         'margin-right': 'auto',
+      //       }
+      //     },
+      //   },
+      // }),
     },
 
     colors: {

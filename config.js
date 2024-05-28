@@ -7,7 +7,7 @@ module.exports = {
     root: "./",
     src: {
       base: "./src",
-      css: "./src/css",
+      scss: "./src/scss",
       js: "./src/js",
       img: "./src/img",
       video: "./src/video",
