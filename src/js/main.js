@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //  if (isThereClass('[stagger-children]')) staggerChildren('[stagger-children]')
   //  if (isThereClass('[zoom-out-trigger="scroll"]')) gsap.effects.zoomOut('[zoom-out-trigger="scroll"]')
 
-  if (isSafari()) document.querySelector('html').classList.add('safari')
   // if (isThereClass('.home-hero-section')) initHomeHeroAnimation();
 
 })
