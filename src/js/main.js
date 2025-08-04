@@ -1,7 +1,7 @@
+import Lenis from 'lenis';
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollSmoother } from 'gsap/ScrollSmoother'
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+gsap.registerPlugin(ScrollTrigger)
 
 import {
   isThereClass,
@@ -11,6 +11,8 @@ import {
   staggerChildren,
 } from './basic/help-functions'
 
+
+
 window.addEventListener('pageshow', function (event) {
   if (event.persisted) {
     window.location.reload()
@@ -18,17 +20,26 @@ window.addEventListener('pageshow', function (event) {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Lenis
+  const lenis = new Lenis({
+    autoRaf: true,
+    lerp: 0.1,
+  });
+
+  // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+  // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+  });
+
+  // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+  gsap.ticker.lagSmoothing(0);
+
   // Split text lines
   initSplitText('[split-direction]');
-
-  // Smooth Scroll
-  window.smoother = ScrollSmoother.create({
-    wrapper: '.smooth-wrapper',
-    content: '#smooth-content',
-    smooth: 1,
-    smoothTouch: false,
-    effects: true,
-  })
 
   // Create Preloader function with calback that call next functions 
   // After preloader

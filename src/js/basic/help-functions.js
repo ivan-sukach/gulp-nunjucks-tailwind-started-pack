@@ -11,10 +11,6 @@ export function isThereClass(element) {
   return document.querySelectorAll(element).length > 0
 }
 
-export function isSafari() {
-  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-}
-
 export function throttle(callback, wait, immediate = false) {
   let timeout = null
   let initialCall = true
